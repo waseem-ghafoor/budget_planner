@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'users/subscription', to: 'subscriptions#get_subscription'
+  put 'users/subscription', to: 'subscriptions#update'
   resources :personal_advisor_requests, only: %i[create]
   resources :quizs, only: %i[create update]
 

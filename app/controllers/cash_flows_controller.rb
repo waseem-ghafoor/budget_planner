@@ -1,4 +1,4 @@
-class CashFlowsController < ApplicationController
+class CashFlowsController < ApiController
   before_action :set_user, :set_category
   before_action :set_monthly_budget, except: %i[create_batch]
   before_action :set_cash_flows, only: %i[create]

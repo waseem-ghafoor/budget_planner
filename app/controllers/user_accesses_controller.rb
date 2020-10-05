@@ -1,4 +1,4 @@
-class UserAccessesController < ApplicationController
+class UserAccessesController < ApiController
   before_action :set_user, :set_user_access
 
   # GET /user_accesses/1

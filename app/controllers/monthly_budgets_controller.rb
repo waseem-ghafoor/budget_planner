@@ -1,4 +1,4 @@
-class MonthlyBudgetsController < ApplicationController
+class MonthlyBudgetsController < ApiController
   before_action :set_user
   before_action :set_monthly_budget, only: %i[update]
 

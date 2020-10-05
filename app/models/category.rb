@@ -12,7 +12,7 @@ class Category
   ].freeze
 
   SUPER_CATEGORY = (INFLOW_SUPER_CATEGORY + OUTFLOW_SUPER_CATEGORY)
-                   .index_by { |cat| cat.underscore.to_sym }
+  .index_by { |cat| cat.underscore.to_sym }
 
   field :title, type: String
   field :type, type: String
@@ -25,12 +25,12 @@ class Category
 
   validates :type, presence: true, inclusion: { in: SUPER_CATEGORY.values }
   validates :title, presence: true, length: { maximum: 255 },
-                    uniqueness: { scope: :type, case_sensitive: false }
+  uniqueness: { scope: :type, case_sensitive: false }
 
   validate :goal_belongs_to_this_owner, :asset_belongs_to_this_owner,
-           :benefit_belongs_to_this_owner, :loan_belongs_to_this_owner,
-           :benefit_only_for_expenses, :loan_only_for_expenses,
-           :validate_count
+  :benefit_belongs_to_this_owner, :loan_belongs_to_this_owner,
+  :benefit_only_for_expenses, :loan_only_for_expenses,
+  :validate_count
 
   scope :by_income, -> { where(type: SUPER_CATEGORY[:income]) }
   scope :by_expense, -> { where(type: SUPER_CATEGORY[:expense]) }

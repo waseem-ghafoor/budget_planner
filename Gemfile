@@ -16,7 +16,8 @@ gem 'puma', '~> 4.1'
 gem 'rest-client', '>= 2.0.1'
 gem 'devise'
 gem 'devise-jwt', '~> 0.5.9'
-
+gem 'activeadmin-mongoid', '1.0.0'
+gem 'ransack-mongoid', github: 'activerecord-hackery/ransack-mongoid'
 # MongoDB
 gem 'bson_ext'
 gem 'mongoid'

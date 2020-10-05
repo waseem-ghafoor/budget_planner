@@ -1,4 +1,4 @@
-class LoansController < ApplicationController
+class LoansController < ApiController
   before_action :set_user
   before_action :set_loan, only: %i[update]
 

@@ -1,4 +1,4 @@
-class SubscriptionsController < ApplicationController
+class SubscriptionsController < ApiController
   before_action :set_subscription, except: :get_subscription
   
   def get_subscription

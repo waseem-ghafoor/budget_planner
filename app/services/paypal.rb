@@ -23,6 +23,11 @@ class Paypal
     url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/#{subscription_id}/cancel"
     response = RestClient::Request.execute(method: :post, url: url ,payload: subscriptions_cancel_msg(msg).to_json , headers: headers)
   end
+  def current_subscription_plan(subscription_id)
+    url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/#{subscription_id}"
+    response = RestClient::Request.execute(method: :get, url: url, headers: headers)
+    parser_data_plan_id(response)
+  end
 
   private
   def subscriptions_cancel_msg(msg = nil)
@@ -52,7 +57,10 @@ class Paypal
     p @authorization_token
   end
   def parse_access_token_data(response)
-    data_response = JSON.parse(response.body).extract!("access_token")["access_token"]  
+    JSON.parse(response.body).extract!("access_token")["access_token"]  
+  end
+  def parser_data_plan_id(response)
+    JSON.parse(response.body).extract!("plan_id")['plan_id']
   end
   def basic_auth
     "Basic "+ convert_base_64(CLIENT_ID+':'+CLIENT_SECRET)

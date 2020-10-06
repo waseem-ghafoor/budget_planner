@@ -11,17 +11,27 @@ class Paypal
 
   def update_subscritpion(subscription_id, plan_id)
     url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/#{subscription_id}/revise"
-    headers = {content_type: :'application/json', Authorization: "#{basic_auth}"}
     response = RestClient::Request.execute(method: :post, url: url ,payload: new_plan_param(plan_id).to_json , headers: headers)
   end
 
   def update_plan_price(plan_id, new_price)
     url = "https://api.sandbox.paypal.com/v1/billing/plans/#{plan_id}/update-pricing-schemes"
-    headers = {content_type: :'application/json', Authorization: "#{basic_auth}"}
     response = RestClient::Request.execute(method: :post, url: url ,payload: new_price_param(new_price).to_json , headers: headers)
   end
 
+  def cancel_subscription(subscription_id, msg = nil)
+    url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/#{subscription_id}/cancel"
+    response = RestClient::Request.execute(method: :post, url: url ,payload: subscriptions_cancel_msg(msg).to_json , headers: headers)
+  end
+
   private
+  def subscriptions_cancel_msg(msg = nil)
+    default_msg = 'Not satisfied with the service'
+    {'reason': msg.nil? ? default_msg : msg}
+  end
+  def headers
+    {content_type: :'application/json', Authorization: "#{basic_auth}"}
+  end
   def new_plan_param plan_id
     {"plan_id" => "#{plan_id}"}
   end
@@ -38,7 +48,6 @@ class Paypal
       }]
     }
   end
-
   def fetch_token
     p @authorization_token
   end

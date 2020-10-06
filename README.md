@@ -32,4 +32,8 @@ build environment:
 
 * Deployment instructions
 
+* Plan instructions
+	Create Plan on Paypal in same product
+	Create new plans on db with same details
+
 * ...

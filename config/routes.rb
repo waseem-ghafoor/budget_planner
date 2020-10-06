@@ -7,6 +7,7 @@ Rails.application.routes.draw do
   resources :personal_advisor_requests, only: %i[create]
   resources :quizs, only: %i[create update]
 
+  resources :plans, only: %i[index update]
   resources :feedbacks, only: %i[create]
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

@@ -1,4 +1,4 @@
-class PersonalAdvisorRequestsController < ApplicationController
+class PersonalAdvisorRequestsController < ApiController
   skip_before_action :authenticate_user!
 
   # POST /personal_advisor_requests

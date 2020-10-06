@@ -1,4 +1,4 @@
-class UserProfilesController < ApplicationController
+class UserProfilesController < ApiController
   before_action :set_user, :set_user_profile, only: %i[show update]
 
   # GET /users/1/user_profiles

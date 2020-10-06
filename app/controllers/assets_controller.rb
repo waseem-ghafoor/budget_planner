@@ -1,4 +1,4 @@
-class AssetsController < ApplicationController
+class AssetsController < ApiController
   before_action :set_user
   before_action :set_asset, only: %i[show update destroy]
 

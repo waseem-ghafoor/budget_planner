@@ -1,12 +1,12 @@
 class Account
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::Paranoia
+	include Mongoid::Document
+	include Mongoid::Timestamps
+	include Mongoid::Paranoia
 
-  field :name, type: String
+	field :name, type: String
 
-  embedded_in :user
+	embedded_in :user
 
-  validates :name, presence: true, length: { maximum: 50 },
-                   uniqueness: { case_sensitive: false }
+	validates :name, presence: true, length: { maximum: 50 },
+	uniqueness: { case_sensitive: false }
 end

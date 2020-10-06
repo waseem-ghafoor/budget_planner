@@ -1,7 +1,13 @@
 Rails.application.routes.draw do
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+  root to: "home#index"
+  get 'users/subscription', to: 'subscriptions#get_subscription'
+  put 'users/subscription', to: 'subscriptions#update'
   resources :personal_advisor_requests, only: %i[create]
   resources :quizs, only: %i[create update]
 
+  resources :plans, only: %i[index update]
   resources :feedbacks, only: %i[create]
   devise_for :users, path: '', path_names: {
     sign_in: 'login',

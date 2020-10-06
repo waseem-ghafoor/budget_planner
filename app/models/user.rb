@@ -49,6 +49,7 @@ class User
   # field :locked_at,       type: Time
 
   embeds_one :user_profile, autobuild: true
+  embeds_one :subscription, autobuild: true
   embeds_one :user_access,  autobuild: true
   embeds_many :goals
   embeds_many :loans

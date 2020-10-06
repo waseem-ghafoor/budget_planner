@@ -1,4 +1,4 @@
-class BenefitsController < ApplicationController
+class BenefitsController < ApiController
   before_action :set_user
   before_action :set_benefit, only: %i[show update destroy]
 

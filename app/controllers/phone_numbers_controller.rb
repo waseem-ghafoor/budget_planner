@@ -1,4 +1,4 @@
-class PhoneNumbersController < ApplicationController
+class PhoneNumbersController < ApiController
   before_action :set_user
   before_action :verified_number, except: %i[index]
 

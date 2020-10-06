@@ -1,4 +1,4 @@
-class QuizsController < ApplicationController
+class QuizsController < ApiController
   skip_before_action :authenticate_user!
   before_action :set_quiz, only: %i[update]
 

@@ -1,4 +1,4 @@
-class FeedbacksController < ApplicationController
+class FeedbacksController < ApiController
   # POST /feedbacks
   def create
     @feedback = Feedback.new(feedback_params)

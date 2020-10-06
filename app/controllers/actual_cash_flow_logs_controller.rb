@@ -1,4 +1,4 @@
-class ActualCashFlowLogsController < ApplicationController
+class ActualCashFlowLogsController < ApiController
   before_action :set_user
   before_action :set_monthly_budget, except: %i[index_batch]
   before_action :set_acfl, only: %i[destroy]

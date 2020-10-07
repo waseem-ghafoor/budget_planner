@@ -1,6 +1,6 @@
 class PlansController < ApiController
   def index
-  	render json: Plan.first(2)
+  	render json: Plan.all
   end
 
   def update

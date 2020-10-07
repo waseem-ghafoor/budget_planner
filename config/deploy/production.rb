@@ -51,11 +51,11 @@
 #     auth_methods: %w(publickey password)
 #     # password: 'please use keys'
 #   }
-server '54.174.236.159',
-  user: 'ec2-user',
+server '67.205.149.181',
+  user: 'deploy',
   roles: %w{web app db},
   ssh_options: {
-    user: 'ec2-user',
+    user: 'deploy',
     auth_methods: %w(publickey),
-    keys: %w(~/.ssh/52.55.121.94.pem)
+    keys: %w(~/.ssh/67.205.149.181.pem)
   }

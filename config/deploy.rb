@@ -2,10 +2,10 @@
 lock '3.5.0'
 
 set :application, 'budget_planner'
-set :repo_url, 'git@bitbucket.org:steventmcevoy/budget_planner.git'
+set :repo_url, 'git@github.com:waseem-ghafoor/budget_planner.git'
 
 set :branch, :master
-set :deploy_to, '/var/www/apps/budget_planner'
+set :deploy_to, '/home/deploy/apps/budget_planner'
 set :pty, true
 set :linked_files, %w{config/app_config.yml config/master.key config/mongoid.yml}
 set :linked_dirs, %w{log tmp/pids tmp/cache tmp/sockets vendor/bundle public/system public/uploads}
@@ -30,7 +30,7 @@ set :puma_preload_app, false
 
 set :ssh_options, {
   auth_methods: %w(publickey),
-  keys: %w(/home/ec2-user/.ssh/bitbucket.pub)
+  keys: %w(/home/deploy/.ssh/bitbucket.pub)
 }
 
 # Default branch is :master
@@ -57,7 +57,6 @@ set :ssh_options, {
 
 # Default value for linked_dirs is []
 # set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'public/system')
-
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
 

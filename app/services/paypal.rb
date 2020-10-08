@@ -3,12 +3,9 @@ require 'uri'
 #Need to remove this for better sol.
 OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class Paypal
-  CLIENT_ID = 'AUSiJLQmGll3v4N9PtZJZ_JXnyvo15n9qOzBmMEdsKBR_y7dKMY9wFSq8CdqVVpdaWTfHMHKqJztM-CJ'
-  CLIENT_SECRET = 'ENIdGh1fzrKEn_sADB2tRmC7cMZg09uStAqo9KgSwJVbM1hcYFvsi-S5mLCpbRHbX-hQxcXVwHtDhMeB'
-  MODE = 'sandbox'
-  PAYPAL_OAUTH_API = 'https://api.sandbox.paypal.com/v1/oauth2/token/'
+  CLIENT_ID = Rails.application.credentials[:PAYPAL_CLIENT_ID]
+  CLIENT_SECRET = Rails.application.credentials[:PAYPAL_CLIENT_SECRET]
   
-
   def update_subscritpion(subscription_id, plan_id)
     url = "https://api.sandbox.paypal.com/v1/billing/subscriptions/#{subscription_id}/revise"
     response = RestClient::Request.execute(method: :post, url: url ,payload: new_plan_param(plan_id).to_json , headers: headers)

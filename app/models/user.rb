@@ -50,6 +50,7 @@ class User
 
   embeds_one :user_profile, autobuild: true
   embeds_one :subscription, autobuild: true
+  validates_associated :subscription
   embeds_one :user_access,  autobuild: true
   embeds_many :goals
   embeds_many :loans
@@ -59,6 +60,7 @@ class User
   embeds_many :accounts
 
   has_many :monthly_budgets, dependent: :destroy
+  accepts_nested_attributes_for :subscription
 
   # Validation for email
   VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-]+(\.[a-z\d\-]+)*\.[a-z]+\z/i.freeze

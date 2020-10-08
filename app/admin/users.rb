@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-
+permit_params :email, subscription_attributes: [:id, :plan_name]
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -34,12 +34,14 @@ ActiveAdmin.register User do
 
   form do |f|
     f.inputs "User Details" do
-      f.input :email
-      f.inputs "Plan" do
-      f.fields_for :subscription do |j|
-        j.inputs :plan_name
+      f.input :email, input_html: { disabled: true } 
+      f.inputs do
+      f.fields_for :subscription  do |j|
+        j.input :plan_name, as: :select, collection: [['Trial','Trial'], ['Free Plan','free_plan'], ['Plus Plan','plus_plan'], ['Prime Plan','prime_plan']]
       end
     end
+      
+      #f.input :subscription
 
     end
     f.actions

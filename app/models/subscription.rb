@@ -2,7 +2,8 @@ class Subscription
   include Mongoid::Document
   field :paypal_subscription_id, type: String
   field :plan_name, type: String, default: "Trial"
-  embedded_in :user
+  embedded_in :user, :inverse_of => :address
+
   after_update :after_plan_change
 
   PLUS_PLAN_ID , PRIME_PLAN_ID = Plan.first(2).pluck(:paypal_plan_id) 

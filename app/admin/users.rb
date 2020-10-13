@@ -1,5 +1,5 @@
 ActiveAdmin.register User do
-permit_params :email, subscription_attributes: [:id, :plan_name]
+permit_params :email, user_access_attributes: [:id, :plan]
   # See permitted parameters documentation:
   # https://github.com/activeadmin/activeadmin/blob/master/docs/2-resource-customization.md#setting-up-strong-parameters
   #
@@ -23,10 +23,10 @@ permit_params :email, subscription_attributes: [:id, :plan_name]
     column :phone_pin
     column :phone_verified
     column 'plan' do |user|
-      user.subscription.plan_name
+      user.user_access.plan
     end
     column 'subscription_id' do |user|
-      user.subscription.paypal_subscription_id
+      user.user_access.paypal_subscription_id
     end
 
     actions
@@ -36,8 +36,8 @@ permit_params :email, subscription_attributes: [:id, :plan_name]
     f.inputs "User Details" do
       f.input :email, input_html: { disabled: true } 
       f.inputs do
-      f.fields_for :subscription  do |j|
-        j.input :plan_name, as: :select, collection: [['Trial','Trial'], ['Free Plan','free_plan'], ['Plus Plan','plus_plan'], ['Prime Plan','prime_plan']]
+      f.fields_for :user_access  do |j|
+        j.input :plan, as: :select, collection: [ ['Free Plan', :free], ['Plus Plan', :plus], ['Prime Plan', :prime]]
       end
     end
       

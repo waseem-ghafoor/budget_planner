@@ -25,6 +25,18 @@ class UserAccessesController < ApiController
     end
   end
 
+  def update
+    if @user_access.update!(paypal_subscription_id: params[:paypal_subscription_id], plan: params[:plan_name].to_sym )
+      render json: { message: ["Success"] }, status: :accepted
+    else
+      render json: { message: ["Something wrong"] }, status: :bad_request
+    end
+  end
+
+  def get_subscription
+    render json: @user_access.attributes.slice('id', 'plan', 'paypal_subscription_id')
+  end
+
   def claim_plus_access
     if @user_access.claim_plus_access!
       render json: { message: "success" }, status: :accepted

@@ -33,13 +33,14 @@ class UserAccess
     }
   }.freeze
 
+  field :paypal_subscription_id, type: String
   field :plan,            type: Symbol, default: :free
   field :plan_updated_at, type: Date
 
   field :referred_by,      type: BSON::ObjectId
   field :referred_users,   type: Array, default: []
 
-  embedded_in :user
+  embedded_in :user, :inverse_of => :address
 
   validates :plan, inclusion: { in: SUPPORTED_PLANS.keys }
 

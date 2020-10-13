@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
   root to: "home#index"
-  get 'users/subscription', to: 'subscriptions#get_subscription'
+  #get 'users/subscription', to: 'subscriptions#get_subscription'
   put 'users/subscription', to: 'subscriptions#update'
   resources :personal_advisor_requests, only: %i[create]
   resources :quizs, only: %i[create update]
@@ -31,7 +31,8 @@ Rails.application.routes.draw do
       resources :assets, :goals, :categories, :benefits, :accounts, :loans
       resource :user_profile, only: %i[show update]
 
-      resource :user_access, only: %i[show]
+      resource :user_access, only: %i[show update]
+      get 'subscription', to: 'user_accesses#get_subscription'
       post :claim_plus_access, to: "user_accesses#claim_plus_access"
       post :refer, to: "user_accesses#refer"
 

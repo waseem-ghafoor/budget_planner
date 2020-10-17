@@ -27,6 +27,7 @@ Rails.application.routes.draw do
           post :verify, to: "phone_numbers#verify"
         end
       end
+      resource :user_details, only:  %i[show update]
 
       resources :assets, :goals, :categories, :benefits, :accounts, :loans
       resource :user_profile, only: %i[show update]
